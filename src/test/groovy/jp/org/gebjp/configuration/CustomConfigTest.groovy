@@ -28,7 +28,7 @@ class CustomConfigTest extends GebSpec {
 		setup:
 		def googleLoginUrl = "https://accounts.google.com"
 
-        //
+        //GebConfig.groovyの設定値を読み込む
 		def googleUserId = browser.config.rawConfig.googleUserId
 		def googlePassword = browser.config.rawConfig.googlePassword
 
