@@ -18,9 +18,6 @@ import spock.lang.Unroll
  *
  * ■概要
  * browser.driverを変更することでクロスブラウザが実現できるというサンプルです。
- * 以下、googleログイン情報を"GebConfig.groovy"に入力してください
- * ・googleUserId = "****@gmail.com"
- * ・googlePassword = "****"
  *
  * ■詳細
  * 下記、ブログを参照してください

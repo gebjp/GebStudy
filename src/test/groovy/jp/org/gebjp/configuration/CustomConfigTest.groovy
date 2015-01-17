@@ -11,6 +11,10 @@ import geb.spock.GebSpec
  * "GebConfig.groovy"に共通設定を定義することで全テストケースで共有することが
  * できるというサンプルです
  *
+ * 以下、googleログイン情報を"GebConfig.groovy"に入力してからテストを実行してください
+ * ・googleUserId = "****@gmail.com"
+ * ・googlePassword = "****"
+ *
  * ■詳細
  * 下記、ブログを参照してください
  * http://yfj2.hateblo.jp/entry/2015/01/12/122426
