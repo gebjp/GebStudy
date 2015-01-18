@@ -13,11 +13,12 @@
   <dd>http://dist.springsource.org/release/GRECLIPSE/e4.3/</dd>
 </dl>
 
-#概要
-* このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください。
+#ソース構成
+* このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください
+  * マニュアル目次の章ごとにテストケースファイルが作成されています
+  * 例えば、"4.Interacting with content"	は、"InteractingWithContent.groovy"にテストコードがあります
 * http://www.gebish.org/manual/current/
 
-#詳細
 1. （未）Introduction
 1. （未）The Browser
 1. （未）The WebDriver Implementation
