@@ -19,14 +19,15 @@
 
 #詳細
 1. Introduction
+  1. dfd
 1. The Browser
-3.The WebDriver Implementation
-4.Interacting with content
-5.Pages
-6.Modules
-7.Configuration
-8.Implicit Assertions
-9.Javascript, AJAX and Dynamic Pages
-10.Direct Downloading
-11.Scripts and Binding
-12.Reporting
+1. The WebDriver Implementation
+1. Interacting with content
+1. Pages
+1. Modules
+1. Configuration
+1. Implicit Assertions
+1. Javascript, AJAX and Dynamic Pages
+1. Direct Downloading
+1. Scripts and Binding
+1. Reporting
