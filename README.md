@@ -18,15 +18,15 @@
 -http://www.gebish.org/manual/current/
 
 #詳細
-+Introduction
-+The Browser
-+The WebDriver Implementation
-+Interacting with content
-+Pages
-+Modules
-+Configuration
-+Implicit Assertions
-+Javascript, AJAX and Dynamic Pages
-+Direct Downloading
-+Scripts and Binding
-+Reporting
+1.Introduction
+2.The Browser
+3.The WebDriver Implementation
+4.Interacting with content
+5.Pages
+6.Modules
+7.Configuration
+8.Implicit Assertions
+9.Javascript, AJAX and Dynamic Pages
+10.Direct Downloading
+11.Scripts and Binding
+12.Reporting
