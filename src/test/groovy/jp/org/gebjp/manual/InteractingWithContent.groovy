@@ -85,8 +85,23 @@ class IndexesRangesTest extends GebSpec {
 		//debug.printLink($("a", text: containsWord("Page")))
 		//debug.printLink($("a", text: notContainsWord("Page")))
 		//"PageObjects"はcontainsWordでは合致しない。
-		$("a", text: containsWord("Page")).size() == 2 
+		$("a", text: containsWord("Page")).size() == 2
 		$("a", text: notContainsWord("Page")).size() == 43
 
+	}
+
+	def "The ＄ Function - Navigators are Iterable"() {
+		when:
+		to GebTopPage
+
+		then:
+		waitFor{ at GebTopPage }
+
+		and:
+		//debug.printLink($("a" ,href:contains("manual")).max { it.@href })
+		$("a" ,href:contains("manual")).max { it.@href }.@href.contains("snapshot")
+
+		//debug.printLink($("a" ,href:contains("manual")).min { it.@href })
+		$("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.6.2")
 	}
 }
