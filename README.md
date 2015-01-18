@@ -3,14 +3,14 @@
 
 #実行環境
 <dl>
-  <dt>geb-spock: 0.10.0</dt>
-  <dd>http://mvnrepository.com/artifact/org.gebish/geb-spock/0.10.0</dd>
-  <dt>groovy: 2.3.7</dt>
-  <dd>http://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all/2.3.7</dd>
   <dt>Eclipse Kepler: 4.3.2</dt>
   <dd>https://eclipse.org/kepler/</dd>
   <dt>Groovy-Eclipse plugin: 2.9.1</dt>
   <dd>http://dist.springsource.org/release/GRECLIPSE/e4.3/</dd>
+  <dt>geb-spock: 0.10.0</dt>
+  <dd>http://mvnrepository.com/artifact/org.gebish/geb-spock/0.10.0</dd>
+  <dt>groovy: 2.3.7</dt>
+  <dd>http://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all/2.3.7</dd>
 </dl>
 
 #ソース構成
