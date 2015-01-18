@@ -22,7 +22,7 @@
 1. （未）Introduction
 1. （未）The Browser
 1. （未）The WebDriver Implementation
-1. （4.1 まで完了）Interacting with content
+1. （4.2 まで完了）Interacting with content
   1. /GebStudy/src/test/groovy/jp/org/gebjp/manual/InteractingWithContent.groovy
 1. （未）Pages
 1. （未）Modules
