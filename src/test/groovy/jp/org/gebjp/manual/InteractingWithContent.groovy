@@ -20,7 +20,7 @@ class InteractingWithContent extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 
-	def "The ＄ Function - Indexes and Ranges"() {
+	def "4.1.2 The ＄ Function - Indexes and Ranges"() {
 		when:
 		to GebTopPage
 
@@ -41,7 +41,7 @@ class InteractingWithContent extends GebSpec {
 		]
 	}
 
-	def "The ＄ Function - Attribute and Text Matching"() {
+	def "4.1.3 The ＄ Function - Attribute and Text Matching"() {
 		when:
 		to GebTopPage
 
@@ -49,17 +49,17 @@ class InteractingWithContent extends GebSpec {
 		waitFor{ at GebTopPage }
 
 		and:
-		//debug.printLink($("a"))
+		//debug.printContents($("a"))
 		$("a").size() == 45
 
-		//debug.printLink($("a", href: contains("www.gebish.org")))
+		//debug.printContents($("a", href: contains("www.gebish.org")))
 		$("a", href: contains("www.gebish.org")).size() == 31
 
-		//debug.printLink($("a", href: contains("www.gebish.org") ,text:""))
+		//debug.printContents($("a", href: contains("www.gebish.org") ,text:""))
 		$("a", href: contains("www.gebish.org") ,text:"").size() == 22
 	}
 
-	def "The ＄ Function - Using Patterns"() {
+	def "4.1.3.1 The ＄ Function - Using Patterns"() {
 		when:
 		to GebTopPage
 
@@ -67,30 +67,30 @@ class InteractingWithContent extends GebSpec {
 		waitFor{ at GebTopPage }
 
 		and:
-		//debug.printLink($("a"))
+		//debug.printContents($("a"))
 		$("a").size() == 45
 
-		//debug.printLink($("a", href: startsWith("http://www.gebish.org")))
+		//debug.printContents($("a", href: startsWith("http://www.gebish.org")))
 		$("a", href: startsWith("http://www.gebish.org")).size() == 31
 		$("a", href: notStartsWith("http://www.gebish.org")).size() == 14
 
-		//debug.printLink($("a", href: contains("manual")))
+		//debug.printContents($("a", href: contains("manual")))
 		$("a", href: contains("manual")).size() == 24
 		$("a", href: notContains("manual")).size() == 21
 
-		//debug.printLink($("a", href: endsWith("/api/")))
+		//debug.printContents($("a", href: endsWith("/api/")))
 		$("a", href: endsWith("/api/")).size() == 11
 		$("a", href: notEndsWith("/api/")).size() == 34
 
-		//debug.printLink($("a", text: containsWord("Page")))
-		//debug.printLink($("a", text: notContainsWord("Page")))
+		//debug.printContents($("a", text: containsWord("Page")))
+		//debug.printContents($("a", text: notContainsWord("Page")))
 		//"PageObjects"はcontainsWordでは合致しない。
 		$("a", text: containsWord("Page")).size() == 2
 		$("a", text: notContainsWord("Page")).size() == 43
 
 	}
 
-	def "The ＄ Function - Navigators are Iterable"() {
+	def "4.1.4 The ＄ Function - Navigators are Iterable"() {
 		when:
 		to GebTopPage
 
@@ -98,14 +98,14 @@ class InteractingWithContent extends GebSpec {
 		waitFor{ at GebTopPage }
 
 		and:
-		//debug.printLink($("a" ,href:contains("manual")).max { it.@href })
+		//debug.printContents($("a" ,href:contains("manual")).max { it.@href })
 		$("a" ,href:contains("manual")).max { it.@href }.@href.contains("snapshot")
 
-		//debug.printLink($("a" ,href:contains("manual")).min { it.@href })
+		//debug.printContents($("a" ,href:contains("manual")).min { it.@href })
 		$("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.6.2")
 	}
 
-	def "Finding & Filtering"() {
+	def "4.2 Finding & Filtering"() {
 		when:
 		to GebTopPage
 
@@ -127,8 +127,60 @@ class InteractingWithContent extends GebSpec {
 		//debug.printContents($("div" , class:"line").has("code" , text:"geb.Browser"))
 		$("div" , class:"line").has("code" , text:"geb.Browser").text() == "import geb.Browser"
 		$("div").has("code" , text:"geb.Browser").@id == "content-wrap"
-		
-		
+	}
+	def "4.3 Traversing"() {
+		when:
+		to GebTopPage
+
+		then:
+		waitFor{ at GebTopPage }
+
+		and:
+		//debug.printContents($("div" , class:contains("index")))
+		$("div").filter(".index3").previous().@class == "line number3 index2 alt2"
+		$("div").filter(".index3").prevAll()*.@class == ["line number1 index0 alt2", "line number2 index1 alt1", "line number3 index2 alt2"]
+		$("div").filter(".index3").next().@class == "line number5 index4 alt2"
+		$("div").filter(".index12").nextAll()*.@class == ["line number14 index13 alt1", "line number15 index14 alt2"]
+		$("div").filter(".index3").parent().@class == "container"
+		$("div").filter(".index3").siblings()*.@class ==[
+			"line number1 index0 alt2",
+			"line number2 index1 alt1",
+			"line number3 index2 alt2",
+			"line number5 index4 alt2",
+			"line number6 index5 alt1",
+			"line number7 index6 alt2",
+			"line number8 index7 alt1",
+			"line number9 index8 alt2",
+			"line number10 index9 alt1",
+			"line number11 index10 alt2",
+			"line number12 index11 alt1",
+			"line number13 index12 alt2",
+			"line number14 index13 alt1",
+			"line number15 index14 alt2"
+		]
+		$("div").filter(".index3").children()*.@class == ["groovy spaces" , "groovy plain" , "groovy string"]
+		$("div").filter(".index3").closest(class:"container").size() == 1
+		$("div").filter(".index3").closest(".container").size() == 1
+		$("div").filter(".index3").closest("div" , class:"container").size() == 1
+		$("div").filter(".index3").nextUntil(".index6")*.@class ==["line number5 index4 alt2", "line number6 index5 alt1"]
 
 	}
+
+	def "4.4 Composition"() {
+		when:
+		to GebTopPage
+
+		then:
+		waitFor{ at GebTopPage }
+
+		and:
+		//debug.printContents($($("div").filter(".index3").previous(),$("div").filter(".index3").next()))
+		$($("div").filter(".index3").previous(),$("div").filter(".index3").next())*.@class ==
+				["line number3 index2 alt2", "line number5 index4 alt2"]
+
+
+
+
+	}
+
 }
