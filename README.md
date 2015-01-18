@@ -12,3 +12,21 @@
   <dt>Groovy-Eclipse plugin: 2.9.1</dt>
   <dd>http://dist.springsource.org/release/GRECLIPSE/e4.3/</dd>
 </dl>
+
+#概要
+-このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください。
+-http://www.gebish.org/manual/current/
+
+#詳細
++Introduction
++The Browser
++The WebDriver Implementation
++Interacting with content
++Pages
++Modules
++Configuration
++Implicit Assertions
++Javascript, AJAX and Dynamic Pages
++Direct Downloading
++Scripts and Binding
++Reporting
