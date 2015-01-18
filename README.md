@@ -14,12 +14,12 @@
 </dl>
 
 #概要
--このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください。
--http://www.gebish.org/manual/current/
+* このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください。
+* http://www.gebish.org/manual/current/
 
 #詳細
-1.Introduction
-2.The Browser
+1. Introduction
+1. The Browser
 3.The WebDriver Implementation
 4.Interacting with content
 5.Pages
