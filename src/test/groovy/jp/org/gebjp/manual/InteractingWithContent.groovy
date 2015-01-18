@@ -16,7 +16,7 @@ import spock.lang.Shared
  * @author YukiFujisawa
  *
  */
-class IndexesRangesTest extends GebSpec {
+class InteractingWithContent extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 
@@ -103,5 +103,32 @@ class IndexesRangesTest extends GebSpec {
 
 		//debug.printLink($("a" ,href:contains("manual")).min { it.@href })
 		$("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.6.2")
+	}
+
+	def "Finding & Filtering"() {
+		when:
+		to GebTopPage
+
+		then:
+		waitFor{ at GebTopPage }
+
+		and:
+		//debug.printContents($("div").find(".keyword"))
+		$("div").find(".keyword" , 0).text() == "import"
+		$("div").$(".keyword" , 0).text() == "import"
+
+		//debug.printContents($("div").filter(".index0").find(".groovy"))
+		$("div").filter(".index0").find(".groovy").text() == "import"
+		$("div").filter(".index0").find(".groovy").not(".keyword").text() == "geb.Browser"
+
+
+		//hasは、指定したコンテンツを子にもつ一番上の親コンテンツを取得する。
+		//例えば、$("div").has("code" , text:"geb.Browser")だと、一番親の"<div id="content-wrap">"が取得される
+		//debug.printContents($("div" , class:"line").has("code" , text:"geb.Browser"))
+		$("div" , class:"line").has("code" , text:"geb.Browser").text() == "import geb.Browser"
+		$("div").has("code" , text:"geb.Browser").@id == "content-wrap"
+		
+		
+
 	}
 }
