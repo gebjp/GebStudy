@@ -18,16 +18,16 @@
 * http://www.gebish.org/manual/current/
 
 #詳細
-1. Introduction
-  1. dfd
-1. The Browser
-1. The WebDriver Implementation
-1. Interacting with content
-1. Pages
-1. Modules
-1. Configuration
-1. Implicit Assertions
-1. Javascript, AJAX and Dynamic Pages
-1. Direct Downloading
-1. Scripts and Binding
-1. Reporting
+1. （未）Introduction
+1. （未）The Browser
+1. （未）The WebDriver Implementation
+1. （4.1 まで完了）Interacting with content
+  1. /GebStudy/src/test/groovy/jp/org/gebjp/manual/InteractingWithContent.groovy
+1. （未）Pages
+1. （未）Modules
+1. （未）Configuration
+1. （未）Implicit Assertions
+1. （未）Javascript, AJAX and Dynamic Pages
+1. （未）Direct Downloading
+1. （未）Scripts and Binding
+1. （未）Reporting
