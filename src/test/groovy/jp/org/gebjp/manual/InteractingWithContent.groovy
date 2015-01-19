@@ -30,10 +30,10 @@ class InteractingWithContent extends GebSpec {
 		and:
 		//debug.printContents($("p"))
 
-		//debug.printContents($("p", 0).text().startsWith("Geb is a browser automation solution."))
+		//debug.printContents($("p", 0))
 		$("p", 0).text().startsWith("Geb is a browser automation solution.")
 
-		//debug.printContents($("p", 2).text().startsWith("It can be used for scripting,"))
+		//debug.printContents($("p", 2))
 		$("p", 2).text().startsWith("It can be used for scripting,")
 		$("p", 0..1)*.text() == [
 			"Geb is a browser automation solution.",
