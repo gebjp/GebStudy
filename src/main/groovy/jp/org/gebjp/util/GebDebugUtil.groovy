@@ -18,7 +18,7 @@ class GebDebugUtil {
 	def printLink(contents){
 		def i = 0;
 		contents.each {
-			println "index:" + i + ", tag():\"" + it.tag()+ "\", @href:\""+ it.@href+ "\", text():\""+ it.text() + "\""
+			println "index: " + i + ", tag():\"" + it.tag()+ "\", @href:\""+ it.@href+ "\", text():\""+ it.text() + "\"" + ", isDisplayed(): " + it.isDisplayed()
 			i++
 		}
 	}

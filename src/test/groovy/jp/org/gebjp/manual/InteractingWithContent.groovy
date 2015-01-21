@@ -1,8 +1,12 @@
 package jp.org.gebjp.manual
 
 import geb.spock.GebSpec
+import jp.org.gebjp.page.GebApiPage
 import jp.org.gebjp.page.GebTopPage
 import jp.org.gebjp.util.GebDebugUtil
+
+import org.openqa.selenium.interactions.Actions
+
 import spock.lang.Shared
 
 /**
@@ -177,10 +181,30 @@ class InteractingWithContent extends GebSpec {
 		//debug.printContents($($("div").filter(".index3").previous(),$("div").filter(".index3").next()))
 		$($("div").filter(".index3").previous(),$("div").filter(".index3").next())*.@class ==
 				["line number3 index2 alt2", "line number5 index4 alt2"]
+		$($("div").filter(".index3").previous(),$("div").filter(".index3").next())*.@class ==
+				["line number3 index2 alt2", "line number5 index4 alt2"]
 
+		//debug.printContents(divElement(".index2"))
+		//debug.printContents(divElement(".index4"))
+		$(divElement(".index2"), divElement(".index4"))*.@class ==
+				["line number3 index2 alt2", "line number5 index4 alt2"]
+	}
 
+	def "4.5 Clicking"() {
+		when:
+		to GebTopPage
 
+		then:
+		waitFor{ at GebTopPage }
 
+		when:
+		Actions action = new Actions(driver);
+		action.moveToElement(apiMenu.firstElement()).perform();
+		waitFor{apiLink("current").isDisplayed() == true}
+		apiLink("current").click(GebApiPage)
+
+		then:
+		waitFor{ at GebApiPage }
 	}
 
 }
