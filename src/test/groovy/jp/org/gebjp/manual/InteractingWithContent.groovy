@@ -25,6 +25,21 @@ class InteractingWithContent extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 
+	/**
+	 * ■解説
+	 * コンテンツを単一取得ができるし、配列で複数取得することもできる
+	 * 
+	 * ■HTML
+	 * <p>a</p>
+	 * <p>b</p>
+	 * <p>c</p>
+	 * 
+	 * ■Geb
+	 * $("p", 0).text() == "a"
+	 * $("p", 2).text() == "c"
+	 * $("p", 0..1)*.text() = ["a", "b"]
+	 * $("p", 1..2)*.text() = ["b", "c"]
+	 */
 	def "4.1.2 The ＄ Function - Indexes and Ranges"() {
 		when:
 		to GebTopPage
@@ -43,6 +58,22 @@ class InteractingWithContent extends GebSpec {
 		$("p", 0..1)*.text() == ["Geb is a browser automation solution.", "It brings together the power of WebDriver, the elegance of jQuery content selection, the robustness of Page Object modelling and the expressiveness of the Groovy language."]
 	}
 
+	/**
+	 * ■解説
+	 * HTMLのAttributeとTextにマッチさせることができる
+	 *
+	 * ■HTML
+	 * <p attr1="a" attr2="b">p1</p>
+	 * <p attr1="a" attr2="c">p2</p>
+	 *
+	 * ■Geb
+	 * $("p", attr1: "a").size() == 2
+	 * $("p", attr2: "c").size() == 1
+	 * $("p", attr1: "a", attr2: "b").size() == 1
+	 * $("p", text: "p1").size() == 1
+	 * $("p", text: "p1", attr1: "a").size() == 1
+	 *
+	 */
 	def "4.1.3 The ＄ Function - Attribute and Text Matching"() {
 		when:
 		to GebTopPage
@@ -61,6 +92,28 @@ class InteractingWithContent extends GebSpec {
 		$("a", href: contains("www.gebish.org") ,text:"").size() == 22
 	}
 
+	/**
+	 * ■解説
+	 * パターンマッチも可能
+	 * 
+	 * startsWith 		| 指定した文字列で開始する値とマッチする
+	 * contains			| 指定した文字列を含む値とマッチする
+	 * endsWith			| 指定した文字列で終了する値とマッチする
+	 * containsWord		| 指定した単語（前後に半角スペースを含む文字列）を含む値とマッチする
+	 * notStartsWith	| 指定した文字列で開始しない値とマッチする
+	 * notContains		| 指定した文字列を含まない値とマッチする
+	 * notEndsWith		| 指定した文字列で終了しない値とマッチする
+	 * notContainsWord	| 指定した単語（前後に半角スペースを含む文字列）を含まない値とマッチする
+	 *
+	 * ■HTML
+	 * <p attr1="a" attr2="b">p1</p>
+	 * <p attr1="a" attr2="c">p2</p>
+	 *
+	 * ■Geb
+	 * $("p", text: ~/p./).size() == 2
+	 * $("p", text: startsWith("p")).size() == 2
+	 * $("p", text: endsWith("2")).size() == 1
+	 */
 	def "4.1.3.1 The ＄ Function - Using Patterns"() {
 		when:
 		to GebTopPage
@@ -92,6 +145,19 @@ class InteractingWithContent extends GebSpec {
 
 	}
 
+	/**
+	 * ■解説
+	 * Navigatorオブジェクトは、Iterableインタフェースを実装しているのでmax(),min()のような
+	 * Groovyの文法を使うこともできる
+	 * 
+	 * ■HTML
+	 * <p>1</p>
+	 * <p>2</p>
+	 * 
+	 * ■Geb
+	 * $("p").max { it.text() }.text() == "2"
+	 * $("p")*.text().max() == "2"
+	 */
 	def "4.1.4 The ＄ Function - Navigators are Iterable"() {
 		when:
 		to GebTopPage
@@ -107,6 +173,27 @@ class InteractingWithContent extends GebSpec {
 		$("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.6.2")
 	}
 
+	/**
+	 * ■解説
+	 * “find”, ”$”は子要素を検索するための関数である。“filter”, ”not”は、
+	 * 要素を減らすための関数である
+	 * 
+	 * ■HTML
+	 * <div class="a">
+	 *     <p class="b">geb</p>
+	 * </div>
+	 * <div class="b">
+	 *     <input type="text"/>
+	 * </div>
+	 * 
+	 * ■Geb
+	 * $("div").find(".b").text() == "geb"
+	 * $("div").$(".b").text() == "geb"
+	 * $("div").filter(".b").text() == ""
+	 * $(".b").not("p").text() == ""
+	 * $("div").has("p").text() == "geb"
+	 * $("div").has("input", type: "text").text() == ""
+	 */
 	def "4.2 Finding & Filtering"() {
 		when:
 		to GebTopPage
@@ -130,6 +217,30 @@ class InteractingWithContent extends GebSpec {
 		$("div" , class:"line").has("code" , text:"geb.Browser").text() == "import geb.Browser"
 		$("div").has("code" , text:"geb.Browser").@id == "content-wrap"
 	}
+
+	/**
+	 * ■解説
+	 * 検索したコンテンツ前後のコンテンツとマッチさせることができる
+	 * 
+	 * ■HTML
+	 * <div class="a">
+	 *   <div class="b">
+	 *     <p class="c"></p>
+	 *     <p class="d"></p>
+	 *     <p class="e"></p>
+	 *   </div>
+	 *   <div class="f"></div>
+	 * </div>
+	 * 
+	 * ■Geb
+	 * $("p.d").previous() // 'p.c'
+	 * $("p.e").prevAll() // 'p.c' & 'p.d'
+	 * $("p.d").next() // 'p.e'
+	 * $("p.c").nextAll() // 'p.d' & 'p.e'
+	 * $("p.d").parent() // 'div.b'
+	 * $("p.c").siblings() // 'p.d' & 'p.e'
+	 * $("div.a").children() // 'div.b' & 'div.f'
+	 */
 	def "4.3 Traversing"() {
 		when:
 		to GebTopPage
@@ -168,6 +279,28 @@ class InteractingWithContent extends GebSpec {
 
 	}
 
+	/**
+	 * ■解説
+	 * 複数のNavigatorを組み合わせることができる。
+	 * PageObjectのcontentを利用することで汎用化することもできる
+	 * 
+	 * ■HTML
+	 * --
+	 * 
+	 * ■Geb
+	 * ・汎用化前
+	 * $($("div.a"), $("div.d")) // ['div.a','div.d']
+	 * 
+	 * ・汎用化後
+	 * -PageObject
+	 * static content = {
+	 *      divElement { divClass -> $('div', 'class': divClass) }
+	 * }
+	 * 
+	 * -Geb
+	 * $(divElement('a'), divElement('d'))
+	 * 
+	 */
 	def "4.4 Composition"() {
 		when:
 		to GebTopPage
@@ -188,6 +321,18 @@ class InteractingWithContent extends GebSpec {
 				["line number3 index2 alt2", "line number5 index4 alt2"]
 	}
 
+	/**
+	 * ■解説
+	 * ・Navigator objectsは、click()を実装している
+	 * ・click()は、最初にマッチした要素のみ実行される
+	 * ・click(Class)を実行するとクリック後、Classがセットされる
+	 * 
+	 * ■HTML
+	 * -
+	 * 
+	 * ■Geb
+	 * $("input.loginButton").click(LoginPage)
+	 */
 	def "4.5 Clicking"() {
 		when:
 		to GebTopPage
@@ -205,6 +350,20 @@ class InteractingWithContent extends GebSpec {
 		waitFor{ at GebApiPage }
 	}
 
+	/**
+	 * ■解説
+	 * ・Navigator objectsには、displayedプロパティが定義されている。
+	 *  displayed==falseの場合は、マッチしても操作することができない
+	 * ・“Navigator.isDisplayed() == false”の場合にNavigator.click()
+	 *  を実行すると例外が発生する
+	 * ・ElementNotVisibleException
+	 * 
+	 * ■HTML
+	 * -
+	 * 
+	 * ■Geb
+	 * -
+	 */
 	def "4.6 Determining Visibility"() {
 		when:
 		to GebTopPage
@@ -220,6 +379,23 @@ class InteractingWithContent extends GebSpec {
 		thrown(ElementNotVisibleException)
 	}
 
+	/**
+	 * ■解説
+	 * ・PageのSizeとLocationを取得できる
+	 * ・LocationはPageの左上からのx , yプロパティでpixel指定する
+	 * 
+	 * ■HTML
+	 * $("div").height == 20
+	 * $("div").width == 40
+	 * $("div").x == 60
+	 * $("div").y == 80
+	 * 
+	 * ■Geb
+	 * $("div")*.height == [20, 30]
+	 * $("div")*.width == [40, 50]
+	 * $("div")*.x == [60, 70]
+	 * $("div")*.y == [80, 90]
+	 */
 	def "4.7 Size and Location"() {
 		when:
 		to GebTopPage
@@ -229,6 +405,22 @@ class InteractingWithContent extends GebSpec {
 		debug.printLocationAndSize($("div"))
 	}
 
+	/**
+	 * ■解説
+	 * ・Navigator objectsのtag(), text(), @attribute and classes()を使って値を取得できる
+	 * ・classes()は、class属性を java.util.List形式で返す
+	 * 
+	 * ■HTML
+	 * <p title="a" class="a para">a</p>
+	 * <p title="b" class="b para">b</p>
+	 * <p title="c" class="c para">c</p>
+	 * 
+	 * ■Geb
+	 * $("p").text() == "a"
+	 * $("p").tag() == "p"
+	 * $("p").@title == "a"
+	 * $("p").classes() == ["a", "para"]
+	 */
 	def "4.8 Accessing tag name, attributes, text and classes"() {
 		when:
 		to GebTopPage
@@ -242,6 +434,17 @@ class InteractingWithContent extends GebSpec {
 
 	}
 
+	/**
+	 * ■解説
+	 * cssメソッドでCSSプロパティを取得することができる
+	 * 
+	 * ■HTML
+	 * <div style="float: left">text</div>
+	 * 
+	 * ■Geb
+	 * $("div").css("float") == "left"
+	 * 
+	 */
 	def "4.9 Css properties"() {
 		when:
 		to GebTopPage
@@ -251,9 +454,6 @@ class InteractingWithContent extends GebSpec {
 
 		and:
 		println $("body").css("font")
-
 	}
-
-
 
 }
