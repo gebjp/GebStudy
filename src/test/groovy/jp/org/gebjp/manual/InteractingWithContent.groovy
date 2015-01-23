@@ -6,6 +6,7 @@ import jp.org.gebjp.page.GebTopPage
 import jp.org.gebjp.util.GebDebugUtil
 
 import org.openqa.selenium.ElementNotVisibleException
+import org.openqa.selenium.Keys
 import org.openqa.selenium.interactions.Actions
 
 import spock.lang.Shared
@@ -95,7 +96,7 @@ class InteractingWithContent extends GebSpec {
 	/**
 	 * ■解説
 	 * パターンマッチも可能
-	 * 
+	 *
 	 * startsWith 		| 指定した文字列で開始する値とマッチする
 	 * contains			| 指定した文字列を含む値とマッチする
 	 * endsWith			| 指定した文字列で終了する値とマッチする
@@ -149,11 +150,11 @@ class InteractingWithContent extends GebSpec {
 	 * ■解説
 	 * Navigatorオブジェクトは、Iterableインタフェースを実装しているのでmax(),min()のような
 	 * Groovyの文法を使うこともできる
-	 * 
+	 *
 	 * ■HTML
 	 * <p>1</p>
 	 * <p>2</p>
-	 * 
+	 *
 	 * ■Geb
 	 * $("p").max { it.text() }.text() == "2"
 	 * $("p")*.text().max() == "2"
@@ -177,7 +178,7 @@ class InteractingWithContent extends GebSpec {
 	 * ■解説
 	 * “find”, ”$”は子要素を検索するための関数である。“filter”, ”not”は、
 	 * 要素を減らすための関数である
-	 * 
+	 *
 	 * ■HTML
 	 * <div class="a">
 	 *     <p class="b">geb</p>
@@ -185,7 +186,7 @@ class InteractingWithContent extends GebSpec {
 	 * <div class="b">
 	 *     <input type="text"/>
 	 * </div>
-	 * 
+	 *
 	 * ■Geb
 	 * $("div").find(".b").text() == "geb"
 	 * $("div").$(".b").text() == "geb"
@@ -221,7 +222,7 @@ class InteractingWithContent extends GebSpec {
 	/**
 	 * ■解説
 	 * 検索したコンテンツ前後のコンテンツとマッチさせることができる
-	 * 
+	 *
 	 * ■HTML
 	 * <div class="a">
 	 *   <div class="b">
@@ -231,7 +232,7 @@ class InteractingWithContent extends GebSpec {
 	 *   </div>
 	 *   <div class="f"></div>
 	 * </div>
-	 * 
+	 *
 	 * ■Geb
 	 * $("p.d").previous() // 'p.c'
 	 * $("p.e").prevAll() // 'p.c' & 'p.d'
@@ -283,23 +284,23 @@ class InteractingWithContent extends GebSpec {
 	 * ■解説
 	 * 複数のNavigatorを組み合わせることができる。
 	 * PageObjectのcontentを利用することで汎用化することもできる
-	 * 
+	 *
 	 * ■HTML
 	 * --
-	 * 
+	 *
 	 * ■Geb
 	 * ・汎用化前
 	 * $($("div.a"), $("div.d")) // ['div.a','div.d']
-	 * 
+	 *
 	 * ・汎用化後
 	 * -PageObject
 	 * static content = {
 	 *      divElement { divClass -> $('div', 'class': divClass) }
 	 * }
-	 * 
+	 *
 	 * -Geb
 	 * $(divElement('a'), divElement('d'))
-	 * 
+	 *
 	 */
 	def "4.4 Composition"() {
 		when:
@@ -326,10 +327,10 @@ class InteractingWithContent extends GebSpec {
 	 * ・Navigator objectsは、click()を実装している
 	 * ・click()は、最初にマッチした要素のみ実行される
 	 * ・click(Class)を実行するとクリック後、Classがセットされる
-	 * 
+	 *
 	 * ■HTML
 	 * -
-	 * 
+	 *
 	 * ■Geb
 	 * $("input.loginButton").click(LoginPage)
 	 */
@@ -357,10 +358,10 @@ class InteractingWithContent extends GebSpec {
 	 * ・“Navigator.isDisplayed() == false”の場合にNavigator.click()
 	 *  を実行すると例外が発生する
 	 * ・ElementNotVisibleException
-	 * 
+	 *
 	 * ■HTML
 	 * -
-	 * 
+	 *
 	 * ■Geb
 	 * -
 	 */
@@ -383,13 +384,13 @@ class InteractingWithContent extends GebSpec {
 	 * ■解説
 	 * ・PageのSizeとLocationを取得できる
 	 * ・LocationはPageの左上からのx , yプロパティでpixel指定する
-	 * 
+	 *
 	 * ■HTML
 	 * $("div").height == 20
 	 * $("div").width == 40
 	 * $("div").x == 60
 	 * $("div").y == 80
-	 * 
+	 *
 	 * ■Geb
 	 * $("div")*.height == [20, 30]
 	 * $("div")*.width == [40, 50]
@@ -409,12 +410,12 @@ class InteractingWithContent extends GebSpec {
 	 * ■解説
 	 * ・Navigator objectsのtag(), text(), @attribute and classes()を使って値を取得できる
 	 * ・classes()は、class属性を java.util.List形式で返す
-	 * 
+	 *
 	 * ■HTML
 	 * <p title="a" class="a para">a</p>
 	 * <p title="b" class="b para">b</p>
 	 * <p title="c" class="c para">c</p>
-	 * 
+	 *
 	 * ■Geb
 	 * $("p").text() == "a"
 	 * $("p").tag() == "p"
@@ -453,7 +454,39 @@ class InteractingWithContent extends GebSpec {
 		waitFor{ at GebTopPage }
 
 		and:
-		println $("body").css("font")
+		$("span" , class:"orange").css("font-style") == "italic"
 	}
+
+	/**
+	 * ■解説
+	 * ・ leftShiftを使うことでどのコンテンツにもキーストロークを送信することができる
+	 * 
+	 * ■HTML
+	 * -
+	 * 
+	 * ■Geb
+	 * $("div") << "abc"
+	 */
+	def "4.10 Sending keystrokes"() {
+		when:
+		to GebTopPage
+
+		then:
+		waitFor{ at GebTopPage }
+
+		and:
+		$("body") << Keys.chord(Keys.CONTROL, "a")
+	}
+
+	//	def "4.11 Accessing input values"() {
+	//		when:
+	//		to GebTopPage
+	//
+	//		then:
+	//		waitFor{ at GebTopPage }
+	//
+	//		and:
+	//		$("body") << Keys.chord(Keys.CONTROL, "a")
+	//	}
 
 }
