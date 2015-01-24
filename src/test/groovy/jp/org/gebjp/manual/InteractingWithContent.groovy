@@ -3,10 +3,13 @@ package jp.org.gebjp.manual
 import geb.spock.GebSpec
 import jp.org.gebjp.page.GebApiPage
 import jp.org.gebjp.page.GebTopPage
+import jp.org.gebjp.page.YahooRegCstBasePage
+import jp.org.gebjp.page.YahooTopPage
 import jp.org.gebjp.util.GebDebugUtil
 
 import org.openqa.selenium.ElementNotVisibleException
 import org.openqa.selenium.Keys
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
 
 import spock.lang.Shared
@@ -29,12 +32,12 @@ class InteractingWithContent extends GebSpec {
 	/**
 	 * ■解説
 	 * コンテンツを単一取得ができるし、配列で複数取得することもできる
-	 * 
+	 *
 	 * ■HTML
 	 * <p>a</p>
 	 * <p>b</p>
 	 * <p>c</p>
-	 * 
+	 *
 	 * ■Geb
 	 * $("p", 0).text() == "a"
 	 * $("p", 2).text() == "c"
@@ -438,13 +441,13 @@ class InteractingWithContent extends GebSpec {
 	/**
 	 * ■解説
 	 * cssメソッドでCSSプロパティを取得することができる
-	 * 
+	 *
 	 * ■HTML
 	 * <div style="float: left">text</div>
-	 * 
+	 *
 	 * ■Geb
 	 * $("div").css("float") == "left"
-	 * 
+	 *
 	 */
 	def "4.9 Css properties"() {
 		when:
@@ -460,10 +463,10 @@ class InteractingWithContent extends GebSpec {
 	/**
 	 * ■解説
 	 * ・ leftShiftを使うことでどのコンテンツにもキーストロークを送信することができる
-	 * 
+	 *
 	 * ■HTML
 	 * -
-	 * 
+	 *
 	 * ■Geb
 	 * $("div") << "abc"
 	 */
@@ -476,17 +479,170 @@ class InteractingWithContent extends GebSpec {
 
 		and:
 		$("body") << Keys.chord(Keys.CONTROL, "a")
+		$("body") << Keys.chord(Keys.ENTER)
 	}
 
-	//	def "4.11 Accessing input values"() {
-	//		when:
-	//		to GebTopPage
-	//
-	//		then:
-	//		waitFor{ at GebTopPage }
-	//
-	//		and:
-	//		$("body") << Keys.chord(Keys.CONTROL, "a")
-	//	}
+	/**
+	 *
+	 * ■解説
+	 * Input, select,  textarea など入力値は、valueメソッドでセットすることができる
+	 * checkbox は、booleanをセットすることもできる
+	 * multiple select は配列をセットすることもできる
+	 *
+	 */
+	def "4.11 Accessing input values"() {
+		when:
+		to YahooTopPage
 
+		then:
+		waitFor{ at YahooTopPage }
+
+		when:
+		$("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").click()
+
+		then:
+		waitFor{ at YahooRegCstBasePage }
+
+		when:
+		$("input" , name:"mail").value("test@example.com")
+		$("input" , name:"yid").value("testtesttest")
+		$("input" , name:"pw1").value("testtesttest")
+		$("input" , name:"pw2").value("testtesttest")
+		$("input" , name:"post_code").value("1120012")
+		$("input" , name:"gender").value("男性")
+		$("input" , name:"birthday").value("19800501")
+		$("input" , name:"deliver").value(false)
+		$("input" , name:"cword").value("1111111")
+		$("input" , name:"has_tcard").value("chk_no_tcard")
+		$("button" , name:"commit").click()
+
+		then:
+		waitFor{$("ul").$("li").text().startsWith("正しく入力してください")}
+	}
+
+	/**
+	 * ■解説
+	 * Input, selectなどform要素への入力に対して簡単に入力できるようにしている
+	 *
+	 * ■HTML
+	 * <form>
+	 *    <input type="text" name="geb" value="testing" />
+	 * </form>
+	 *
+	 * ■Geb
+	 * $("form").geb == "testing"
+	 * $("form").geb = "goodness"
+	 * $("form").geb == "goodness"
+	 *
+	 */
+	def "4.12 Form Control Shortcuts"() {
+		when:
+		to YahooTopPage
+
+		then:
+		waitFor{ at YahooTopPage }
+
+		when:
+		$("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").click()
+
+		then:
+		waitFor{ at YahooRegCstBasePage }
+
+		when:
+		//4.12.1.5 text inputs and textareas
+		$("form").mail = "test@example.com"
+		$("form").mail << Keys.BACK_SPACE
+		$("form").yid = "testtesttest"
+		$("form").pw1 = "testtesttest"
+		$("form").pw2 = "testtesttest"
+		$("form").post_code = "1120012"
+		$("form").birthday = "19800501"
+		$("form").cword = "1111111"
+
+		//4.12.1.3 checkbox
+		$("form").deliver = false
+
+		//4.12.1.4 radio
+		$("form").gender = "男性"
+		$("form").has_tcard = "chk_no_tcard"
+
+		$("button" , name:"commit").click()
+
+		then:
+		waitFor{$("ul").$("li").text().startsWith("正しく入力してください")}
+	}
+
+	/**
+	 * ■解説
+	 * WebDriver driverのActionクラスを使うことで複雑な動作も実行することができる
+	 * 
+	 * ■HTML
+	 * -
+	 * 
+	 * ■Geb
+	 * def actions = new Actions(driver)
+	 *
+	 * WebElement someItem = $('li.clicky').firstElement()
+	 * def shiftDoubleClickAction = actions.keyDown(Keys.SHIFT).doubleClick(someItem).keyUp(Keys.SHIFT).build()
+	 * 
+	 * shiftDoubleClickAction.perform()
+	 */
+	def "4.13.2 Using Actions"() {
+		when:
+		to YahooTopPage
+
+		then:
+		waitFor{ at YahooTopPage }
+
+		when:
+		WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
+		def actions = new Actions(driver)
+		def newTabAction = actions.keyDown(Keys.CONTROL).click(regCstLink).keyUp(Keys.CONTROL).build()
+		newTabAction.perform()
+		newTabAction.perform()
+		regCstLink.click()
+
+		then:
+		waitFor{ at YahooRegCstBasePage }
+	}
+
+	/**
+	 * ■解説
+	 * Interact Closuresを使うと、Actionよりも簡単に実装できる
+	 * 
+	 * ■HTML
+	 * -
+	 * 
+	 * ■Geb
+	 * interact {
+	 *    keyDown(Keys.SHIFT)
+	 *    doubleClick($('li.clicky'))
+	 *    keyUp(Keys.SHIFT)
+	 * }
+	 * @return
+	 */
+	def "4.13.3 Using Interact Closures"() {
+		when:
+		to YahooTopPage
+
+		then:
+		waitFor{ at YahooTopPage }
+
+		when:
+		WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
+		interact {
+			keyDown(Keys.CONTROL)
+			click(regCstLink)
+			keyUp(Keys.CONTROL)
+		}
+		interact {
+			keyDown(Keys.CONTROL)
+			click(regCstLink)
+			keyUp(Keys.CONTROL)
+		}
+		regCstLink.click()
+
+		then:
+		waitFor{ at YahooRegCstBasePage }
+	}
 }
