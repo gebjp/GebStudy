@@ -1,5 +1,5 @@
 //choose "htmlunit", "firefox", "ie", "chrome"
-driver = "firefox"
+driver = "chrome"
 
 //chrome - http://chromedriver.storage.googleapis.com/index.html
 System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe")
@@ -9,3 +9,8 @@ System.setProperty("webdriver.ie.driver", "driver/IEDriverServer.exe")
 
 googleUserId = "****@gmail.com"
 googlePassword = "****"
+
+waiting {
+	timeout = 20
+	retryInterval = 0.5
+}
