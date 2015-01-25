@@ -41,6 +41,7 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
 		then:
 		waitFor{ at GebTopPage }
+		println  browser.driver.getPageSource()
 
 		and:
 		//debug.printContents($("p"))
