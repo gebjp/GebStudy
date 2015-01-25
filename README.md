@@ -23,7 +23,7 @@
 1. （未）The Browser
 1. （未）The WebDriver Implementation
 1. Interacting with content
- * GebStudy/src/test/groovy/jp/org/gebjp/manual/chapter4
+  * GebStudy/src/test/groovy/jp/org/gebjp/manual/chapter4
   * Per01_InteractingWithContentTest.groovy
   * Per02_InteractingWithContentTest.groovy
   * Per03_InteractingWithContentTest.groovy
