@@ -23,20 +23,20 @@
 1. （未）The Browser
 1. （未）The WebDriver Implementation
 1. Interacting with content
- * GebStudy/src/test/groovy/jp/org/gebjp/manual/chapter4)
- 1. Per01_InteractingWithContentTest.groovy
- 1. Per02_InteractingWithContentTest.groovy
- 1. Per03_InteractingWithContentTest.groovy
- 1. Per04_InteractingWithContentTest.groovy
- 1. Per05_InteractingWithContentTest.groovy
- 1. Per06_InteractingWithContentTest.groovy
- 1. Per07_InteractingWithContentTest.groovy
- 1. Per08_InteractingWithContentTest.groovy
- 1. Per09_InteractingWithContentTest.groovy
- 1. Per10_InteractingWithContentTest.groovy
- 1. Per11_InteractingWithContentTest.groovy
- 1. Per12_InteractingWithContentTest.groovy
- 1. Per13_InteractingWithContentTest.groovy
+ * GebStudy/src/test/groovy/jp/org/gebjp/manual/chapter4
+  * Per01_InteractingWithContentTest.groovy
+  * Per02_InteractingWithContentTest.groovy
+  * Per03_InteractingWithContentTest.groovy
+  * Per04_InteractingWithContentTest.groovy
+  * Per05_InteractingWithContentTest.groovy
+  * Per06_InteractingWithContentTest.groovy
+  * Per07_InteractingWithContentTest.groovy
+  * Per08_InteractingWithContentTest.groovy
+  * Per09_InteractingWithContentTest.groovy
+  * Per10_InteractingWithContentTest.groovy
+  * Per11_InteractingWithContentTest.groovy
+  * Per12_InteractingWithContentTest.groovy
+  * Per13_InteractingWithContentTest.groovy
 1. （未）Pages
 1. （未）Modules
 1. （未）Configuration
