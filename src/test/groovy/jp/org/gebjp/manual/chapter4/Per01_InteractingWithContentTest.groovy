@@ -35,7 +35,7 @@ class Per01_InteractingWithContentTest extends GebSpec {
 	 * $("p", 0..1)*.text() = ["a", "b"]
 	 * $("p", 1..2)*.text() = ["b", "c"]
 	 */
-	def "4.1.2 The ＄ Function - Indexes and Ranges"() {
+	def "4.1.2 Indexes and Ranges"() {
 		when:
 		to GebTopPage
 
@@ -69,7 +69,7 @@ class Per01_InteractingWithContentTest extends GebSpec {
 	 * $("p", text: "p1", attr1: "a").size() == 1
 	 *
 	 */
-	def "4.1.3 The ＄ Function - Attribute and Text Matching"() {
+	def "4.1.3 Attribute and Text Matching"() {
 		when:
 		to GebTopPage
 
@@ -109,7 +109,7 @@ class Per01_InteractingWithContentTest extends GebSpec {
 	 * $("p", text: startsWith("p")).size() == 2
 	 * $("p", text: endsWith("2")).size() == 1
 	 */
-	def "4.1.3.1 The ＄ Function - Using Patterns"() {
+	def "4.1.3.1 Using Patterns"() {
 		when:
 		to GebTopPage
 
@@ -153,7 +153,7 @@ class Per01_InteractingWithContentTest extends GebSpec {
 	 * $("p").max { it.text() }.text() == "2"
 	 * $("p")*.text().max() == "2"
 	 */
-	def "4.1.4 The ＄ Function - Navigators are Iterable"() {
+	def "4.1.4 Navigators are Iterable"() {
 		when:
 		to GebTopPage
 
