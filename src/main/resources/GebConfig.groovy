@@ -7,6 +7,10 @@ System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe")
 //ie - http://selenium-release.storage.googleapis.com/index.html
 System.setProperty("webdriver.ie.driver", "driver/IEDriverServer.exe")
 
+//reports setting
+reportsDir = "target/geb-reports"
+reportOnTestFailureOnly = false
+
 googleUserId = "****@gmail.com"
 googlePassword = "****"
 
