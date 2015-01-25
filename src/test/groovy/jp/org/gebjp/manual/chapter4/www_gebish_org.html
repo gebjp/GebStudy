@@ -122,116 +122,76 @@
      </p>
      <h1>What does it look like? </h1>Here's what a simple Geb script to log into an admin section of a website might look like…
 <div>
- <div id="highlighter_204963"
-  class="syntaxhighlighter nogutter  groovy">
-  <table border="0"
-   cellpadding="0"
-   cellspacing="0">
+ <div id="highlighter_204963" class="syntaxhighlighter nogutter  groovy">
+  <table border="0" cellpadding="0" cellspacing="0">
    <tbody>
     <tr>
      <td class="code">
       <div class="container">
        <div class="line number1 index0 alt2">
-        <code class="groovy keyword">import
-        </code>
-        <code class="groovy plain">geb.Browser
-        </code>
+        <code class="groovy keyword">import </code>
+        <code class="groovy plain">geb.Browser </code>
        </div>
-       <div class="line number2 index1 alt1">&#160;
-       </div>
+       <div class="line number2 index1 alt1">&#160; </div>
        <div class="line number3 index2 alt2">
-        <code class="groovy plain">Browser.drive {
-        </code>
+        <code class="groovy plain">Browser.drive { </code>
        </div>
        <div class="line number4 index3 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">go 
-        </code>
-        <code class="groovy string">"<a href="http://myapp.com/login">http://myapp.com/login</a>"
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">go </code>
+        <code class="groovy string">"<a href="http://myapp.com/login">http://myapp.com/login</a>" </code>
        </div>
        <div class="line number5 index4 alt2">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>&#160;
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>&#160;
        </div>
        <div class="line number6 index5 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy keyword">assert
-        </code>
-        <code class="groovy plain">$(
-        </code>
-        <code class="groovy string">"h1"
-        </code>
-        <code class="groovy plain">).text() == 
-        </code>
-        <code class="groovy string">"Please Login"
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>
+        <code class="groovy keyword">assert </code>
+        <code class="groovy plain">$( </code>
+        <code class="groovy string">"h1" </code>
+        <code class="groovy plain">).text() == </code>
+        <code class="groovy string">"Please Login" </code>
        </div>
        <div class="line number7 index6 alt2">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>&#160;
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>&#160;
        </div>
        <div class="line number8 index7 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">$(
-        </code>
-        <code class="groovy string">"form.login"
-        </code>
-        <code class="groovy plain">).with {
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">$( </code>
+        <code class="groovy string">"form.login" </code>
+        <code class="groovy plain">).with { </code>
        </div>
        <div class="line number9 index8 alt2">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">username = 
-        </code>
-        <code class="groovy string">"admin"
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">username = </code>
+        <code class="groovy string">"admin" </code>
        </div>
        <div class="line number10 index9 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">password = 
-        </code>
-        <code class="groovy string">"password"
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">password = </code>
+        <code class="groovy string">"password" </code>
        </div>
        <div class="line number11 index10 alt2">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">login().click()
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">login().click() </code>
        </div>
        <div class="line number12 index11 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy plain">}
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>
+        <code class="groovy plain">} </code>
        </div>
        <div class="line number13 index12 alt2">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>&#160;
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>&#160;
        </div>
        <div class="line number14 index13 alt1">
-        <code class="groovy spaces">&#160;&#160;&#160;&#160;
-        </code>
-        <code class="groovy keyword">assert
-        </code>
-        <code class="groovy plain">$(
-        </code>
-        <code class="groovy string">"h1"
-        </code>
-        <code class="groovy plain">).text() == 
-        </code>
-        <code class="groovy string">"Admin Section"
-        </code>
+        <code class="groovy spaces">&#160;&#160;&#160;&#160; </code>
+        <code class="groovy keyword">assert </code>
+        <code class="groovy plain">$( </code>
+        <code class="groovy string">"h1" </code>
+        <code class="groovy plain">).text() == </code>
+        <code class="groovy string">"Admin Section" </code>
        </div>
        <div class="line number15 index14 alt2">
-        <code class="groovy plain">}
-        </code>
+        <code class="groovy plain">} </code>
        </div>
       </div>
      </td>
