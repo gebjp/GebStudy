@@ -1,6 +1,6 @@
 package jp.org.gebjp.manual.chapter4
 
-import geb.spock.GebReportingSpec
+import geb.spock.GebSpec
 import jp.org.gebjp.page.GebTopPage
 import jp.org.gebjp.util.GebDebugUtil
 
@@ -19,7 +19,7 @@ import spock.lang.Shared
  * @author YukiFujisawa
  *
  */
-class Per10_InteractingWithContentTest extends GebReportingSpec {
+class Per10_InteractingWithContentTest extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 

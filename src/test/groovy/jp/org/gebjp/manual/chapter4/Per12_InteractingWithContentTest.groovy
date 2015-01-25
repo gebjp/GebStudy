@@ -1,6 +1,6 @@
 package jp.org.gebjp.manual.chapter4
 
-import geb.spock.GebReportingSpec
+import geb.spock.GebSpec
 import jp.org.gebjp.page.YahooRegCstBasePage
 import jp.org.gebjp.page.YahooTopPage
 import jp.org.gebjp.util.GebDebugUtil
@@ -20,7 +20,7 @@ import spock.lang.Shared
  * @author YukiFujisawa
  *
  */
-class Per12_InteractingWithContentTest extends GebReportingSpec {
+class Per12_InteractingWithContentTest extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 

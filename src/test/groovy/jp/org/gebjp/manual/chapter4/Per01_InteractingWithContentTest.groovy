@@ -1,6 +1,6 @@
 package jp.org.gebjp.manual.chapter4
 
-import geb.spock.GebReportingSpec
+import geb.spock.GebSpec
 import jp.org.gebjp.page.GebTopPage
 import jp.org.gebjp.util.GebDebugUtil
 import spock.lang.Shared
@@ -16,7 +16,7 @@ import spock.lang.Shared
  * @author YukiFujisawa
  *
  */
-class Per01_InteractingWithContentTest extends GebReportingSpec {
+class Per01_InteractingWithContentTest extends GebSpec {
 
 	@Shared GebDebugUtil debug = new GebDebugUtil()
 
@@ -50,7 +50,10 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
 		//debug.printContents($("p", 2))
 		$("p", 2).text().startsWith("It can be used for scripting,")
-		$("p", 0..1)*.text() == ["Geb is a browser automation solution.", "It brings together the power of WebDriver, the elegance of jQuery content selection, the robustness of Page Object modelling and the expressiveness of the Groovy language."]
+		$("p", 0..1)*.text() == [
+			"Geb is a browser automation solution.",
+			"It brings together the power of WebDriver, the elegance of jQuery content selection, the robustness of Page Object modelling and the expressiveness of the Groovy language."
+		]
 	}
 
 	/**
