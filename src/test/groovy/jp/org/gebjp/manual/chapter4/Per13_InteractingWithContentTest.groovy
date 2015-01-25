@@ -52,6 +52,9 @@ class Per13_InteractingWithContentTest extends GebReportingSpec {
     WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
     def actions = new Actions(driver)
     def newTabAction = actions.keyDown(Keys.CONTROL).click(regCstLink).keyUp(Keys.CONTROL).build()
+
+    //Ctrl + click()は、リンク先を新規タブで起動する操作
+    //その操作をperform()で実行している
     newTabAction.perform()
     newTabAction.perform()
     regCstLink.click()
@@ -84,6 +87,8 @@ class Per13_InteractingWithContentTest extends GebReportingSpec {
 
     when:
     WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
+    //Ctrl + click()は、リンク先を新規タブで起動する操作
+    //その操作をinteractで実行している
     interact {
       keyDown(Keys.CONTROL)
       click(regCstLink)

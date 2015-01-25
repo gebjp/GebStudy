@@ -43,7 +43,7 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
     waitFor{ at GebTopPage }
 
     and:
-    debug.printContents($("p"))
+    //debug.printContents($("p"))
     //debug.printContents($("p", 0))
     $("p", 0).text().startsWith("Geb is a browser automation solution.")
 

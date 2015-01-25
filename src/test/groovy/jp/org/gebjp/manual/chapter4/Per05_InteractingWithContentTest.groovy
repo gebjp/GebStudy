@@ -46,6 +46,9 @@ class Per05_InteractingWithContentTest extends GebReportingSpec {
     when:
     Actions action = new Actions(driver);
     action.moveToElement(apiMenu.firstElement()).perform();
+
+    //apiLinkは、GebTopPageに定義されている
+    //apiLink{ version -> $("a" , href:contains(version)).filter(href:contains("api"))}
     waitFor{apiLink("current").isDisplayed() == true}
     apiLink("current").click(GebApiPage)
 

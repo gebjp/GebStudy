@@ -43,6 +43,7 @@ class Per11_InteractingWithContentTest extends GebReportingSpec {
     waitFor{ at YahooRegCstBasePage }
 
     when:
+    // https://account.edit.yahoo.co.jp/registrationを参照してください
     $("input" , name:"mail").value("test@example.com")
     $("input" , name:"yid").value("testtesttest")
     $("input" , name:"pw1").value("testtesttest")

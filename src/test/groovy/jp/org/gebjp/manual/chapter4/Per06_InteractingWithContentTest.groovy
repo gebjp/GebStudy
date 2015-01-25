@@ -47,6 +47,9 @@ class Per06_InteractingWithContentTest extends GebReportingSpec {
 
     when:
     //debug.printContents(apiLink("current"))
+
+    //apiLinkは、GebTopPageに定義されている
+    //apiLink{ version -> $("a" , href:contains(version)).filter(href:contains("api"))}
     apiLink("current").click(GebApiPage)
 
     then:

@@ -78,9 +78,13 @@ class Per03_InteractingWithContentTest extends GebReportingSpec {
       "line number15 index14 alt2"
     ]
     $("div").filter(".index3").children()*.@class == ["groovy spaces" , "groovy plain" , "groovy string"]
+    
+    //closestは、指定したcontentから一番近くの条件に一致したcontentを取得するメソッド
     $("div").filter(".index3").closest(class:"container").size() == 1
     $("div").filter(".index3").closest(".container").size() == 1
     $("div").filter(".index3").closest("div" , class:"container").size() == 1
+    
+    //nextUntilは、指定したcontentから条件に合致するまでのcontentまで取得するメソッド
     $("div").filter(".index3").nextUntil(".index6")*.@class ==["line number5 index4 alt2", "line number6 index5 alt1"]
 
   }

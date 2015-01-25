@@ -53,6 +53,8 @@ class Per12_InteractingWithContentTest extends GebReportingSpec {
     waitFor{ at YahooRegCstBasePage }
 
     when:
+    // https://account.edit.yahoo.co.jp/registrationを参照してください
+
     //4.12.1.5 text inputs and textareas
     $("form").mail = "test@example.com"
     $("form").mail << Keys.BACK_SPACE
