@@ -50,14 +50,17 @@ class Per04_InteractingWithContentTest extends GebReportingSpec {
 		waitFor{ at GebTopPage }
 
 		and:
-		//debug.printContents($($("div").filter(".index3").previous(),$("div").filter(".index3").next()))
-		$($("div").filter(".index3").previous(),$("div").filter(".index3").next())*.@class ==
-				["line number3 index2 alt2", "line number5 index4 alt2"]
-		$($("div").filter(".index3").previous(),$("div").filter(".index3").next())*.@class ==
+		//debug.printContents($($("div").filter(".index2"),$("div").filter(".index4")))
+		def preContent = $("div").filter(".index2")
+		def nextContent = $("div").filter(".index4")
+		$(preContent,nextContent)*.@class ==
 				["line number3 index2 alt2", "line number5 index4 alt2"]
 
 		//debug.printContents(divElement(".index2"))
 		//debug.printContents(divElement(".index4"))
+
+		//divElementは、GebTopPageに定義している
+		//divElement { divClass -> $("div").filter(divClass) }
 		$(divElement(".index2"), divElement(".index4"))*.@class ==
 				["line number3 index2 alt2", "line number5 index4 alt2"]
 	}
