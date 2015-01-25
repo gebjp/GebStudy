@@ -22,34 +22,34 @@ import spock.lang.Shared
  */
 class Per06_InteractingWithContentTest extends GebReportingSpec {
 
-	@Shared GebDebugUtil debug = new GebDebugUtil()
+  @Shared GebDebugUtil debug = new GebDebugUtil()
 
-	/**
-	 * ■解説
-	 * ・Navigator objectsには、displayedプロパティが定義されている。
-	 *  displayed==falseの場合は、マッチしても操作することができない
-	 * ・“Navigator.isDisplayed() == false”の場合にNavigator.click()
-	 *  を実行すると例外が発生する
-	 * ・ElementNotVisibleException
-	 *
-	 * ■HTML
-	 * -
-	 *
-	 * ■Geb
-	 * -
-	 */
-	def "4.6 Determining Visibility"() {
-		when:
-		to GebTopPage
+  /**
+   * ■解説
+   * ・Navigator objectsには、displayedプロパティが定義されている。
+   *  displayed==falseの場合は、マッチしても操作することができない
+   * ・“Navigator.isDisplayed() == false”の場合にNavigator.click()
+   *  を実行すると例外が発生する
+   * ・ElementNotVisibleException
+   *
+   * ■HTML
+   * -
+   *
+   * ■Geb
+   * -
+   */
+  def "4.6 Determining Visibility"() {
+    when:
+    to GebTopPage
 
-		then:
-		waitFor{ at GebTopPage }
+    then:
+    waitFor{ at GebTopPage }
 
-		when:
-		//debug.printContents(apiLink("current"))
-		apiLink("current").click(GebApiPage)
+    when:
+    //debug.printContents(apiLink("current"))
+    apiLink("current").click(GebApiPage)
 
-		then:
-		thrown(ElementNotVisibleException)
-	}
+    then:
+    thrown(ElementNotVisibleException)
+  }
 }

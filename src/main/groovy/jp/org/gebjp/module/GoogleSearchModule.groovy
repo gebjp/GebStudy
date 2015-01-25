@@ -5,12 +5,12 @@ import jp.org.gebjp.page.GoogleResultsPage
 
 class GoogleSearchModule extends Module {
 
-    def buttonName
+  def buttonName
 
-    static content = {
-        field { $("input", name: "q") }
-        button(to: GoogleResultsPage) {
-            $("button", name: buttonName)
-        }
+  static content = {
+    field { $("input", name: "q") }
+    button(to: GoogleResultsPage) {
+      $("button", name: buttonName)
     }
+  }
 }

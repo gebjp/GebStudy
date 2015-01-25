@@ -15,6 +15,6 @@ googleUserId = "****@gmail.com"
 googlePassword = "****"
 
 waiting {
-	timeout = 20
-	retryInterval = 0.5
+  timeout = 20
+  retryInterval = 0.5
 }

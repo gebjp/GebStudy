@@ -18,27 +18,27 @@ import spock.lang.Shared
  */
 class Per09_InteractingWithContentTest extends GebReportingSpec {
 
-	@Shared GebDebugUtil debug = new GebDebugUtil()
+  @Shared GebDebugUtil debug = new GebDebugUtil()
 
-	/**
-	 * ■解説
-	 * cssメソッドでCSSプロパティを取得することができる
-	 *
-	 * ■HTML
-	 * <div style="float: left">text</div>
-	 *
-	 * ■Geb
-	 * $("div").css("float") == "left"
-	 *
-	 */
-	def "4.9 Css properties"() {
-		when:
-		to GebTopPage
+  /**
+   * ■解説
+   * cssメソッドでCSSプロパティを取得することができる
+   *
+   * ■HTML
+   * <div style="float: left">text</div>
+   *
+   * ■Geb
+   * $("div").css("float") == "left"
+   *
+   */
+  def "4.9 Css properties"() {
+    when:
+    to GebTopPage
 
-		then:
-		waitFor{ at GebTopPage }
+    then:
+    waitFor{ at GebTopPage }
 
-		and:
-		$("span" , class:"orange").css("font-style") == "italic"
-	}
+    and:
+    $("span" , class:"orange").css("font-style") == "italic"
+  }
 }

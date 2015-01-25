@@ -9,10 +9,10 @@ import geb.Page
  */
 class YahooRegCstBasePage extends Page {
 
-	static url = "https://account.edit.yahoo.co.jp/registration"
+  static url = "https://account.edit.yahoo.co.jp/registration"
 
-	static at = { title.startsWith("Yahoo! JAPAN ID登録")}
+  static at = { title.startsWith("Yahoo! JAPAN ID登録")}
 
-	static content = {
-	}
+  static content = {
+  }
 }

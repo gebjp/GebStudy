@@ -21,27 +21,27 @@ import spock.lang.Shared
  */
 class Per10_InteractingWithContentTest extends GebReportingSpec {
 
-	@Shared GebDebugUtil debug = new GebDebugUtil()
+  @Shared GebDebugUtil debug = new GebDebugUtil()
 
-	/**
-	 * ■解説
-	 * ・ leftShiftを使うことでどのコンテンツにもキーストロークを送信することができる
-	 *
-	 * ■HTML
-	 * -
-	 *
-	 * ■Geb
-	 * $("div") << "abc"
-	 */
-	def "4.10 Sending keystrokes"() {
-		when:
-		to GebTopPage
+  /**
+   * ■解説
+   * ・ leftShiftを使うことでどのコンテンツにもキーストロークを送信することができる
+   *
+   * ■HTML
+   * -
+   *
+   * ■Geb
+   * $("div") << "abc"
+   */
+  def "4.10 Sending keystrokes"() {
+    when:
+    to GebTopPage
 
-		then:
-		waitFor{ at GebTopPage }
+    then:
+    waitFor{ at GebTopPage }
 
-		and:
-		$("body") << Keys.chord(Keys.CONTROL, "a")
-		$("body") << Keys.chord(Keys.ENTER)
-	}
+    and:
+    $("body") << Keys.chord(Keys.CONTROL, "a")
+    $("body") << Keys.chord(Keys.ENTER)
+  }
 }

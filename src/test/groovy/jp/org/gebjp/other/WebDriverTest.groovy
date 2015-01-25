@@ -28,45 +28,45 @@ import spock.lang.Unroll
  */
 
 class WebDriverTest extends GebSpec {
-	@Unroll
-	def "first result for wikipedia search should be wikipedia"() {
+  @Unroll
+  def "first result for wikipedia search should be wikipedia"() {
 
-		setup:
-		switch(driverName){
-			case "firefox" :
-				driver = new FirefoxDriver()
-				break
-			case "chrome":
-				driver = new ChromeDriver()
-				break
-			case "ie":
-				driver = new InternetExplorerDriver()
-				break
-		}
+    setup:
+    switch(driverName){
+      case "firefox" :
+        driver = new FirefoxDriver()
+        break
+      case "chrome":
+        driver = new ChromeDriver()
+        break
+      case "ie":
+        driver = new InternetExplorerDriver()
+        break
+    }
 
-		when:
-		to GoogleHomePage
+    when:
+    to GoogleHomePage
 
-		then:
-		at GoogleHomePage
+    then:
+    at GoogleHomePage
 
-		when:
-		search("Wikipedia")
+    when:
+    search("Wikipedia")
 
-		then:
-		waitFor { at GoogleResultsPage }
+    then:
+    waitFor { at GoogleResultsPage }
 
-		when:
-		firstResultLinkClick()
+    when:
+    firstResultLinkClick()
 
-		then:
-		waitFor { at WikipediaPage }
+    then:
+    waitFor { at WikipediaPage }
 
-		where:
-		driverName << ["firefox", "chrome"]
-	}
+    where:
+    driverName << ["firefox", "chrome"]
+  }
 
-	def cleanup(){
-		driver.quit()
-	}
+  def cleanup(){
+    driver.quit()
+  }
 }

@@ -22,34 +22,34 @@ import spock.lang.Shared
  */
 class Per05_InteractingWithContentTest extends GebReportingSpec {
 
-	@Shared GebDebugUtil debug = new GebDebugUtil()
+  @Shared GebDebugUtil debug = new GebDebugUtil()
 
-	/**
-	 * ■解説
-	 * ・Navigator objectsは、click()を実装している
-	 * ・click()は、最初にマッチした要素のみ実行される
-	 * ・click(Class)を実行するとクリック後、Classがセットされる
-	 *
-	 * ■HTML
-	 * -
-	 *
-	 * ■Geb
-	 * $("input.loginButton").click(LoginPage)
-	 */
-	def "4.5 Clicking"() {
-		when:
-		to GebTopPage
+  /**
+   * ■解説
+   * ・Navigator objectsは、click()を実装している
+   * ・click()は、最初にマッチした要素のみ実行される
+   * ・click(Class)を実行するとクリック後、Classがセットされる
+   *
+   * ■HTML
+   * -
+   *
+   * ■Geb
+   * $("input.loginButton").click(LoginPage)
+   */
+  def "4.5 Clicking"() {
+    when:
+    to GebTopPage
 
-		then:
-		waitFor{ at GebTopPage }
+    then:
+    waitFor{ at GebTopPage }
 
-		when:
-		Actions action = new Actions(driver);
-		action.moveToElement(apiMenu.firstElement()).perform();
-		waitFor{apiLink("current").isDisplayed() == true}
-		apiLink("current").click(GebApiPage)
+    when:
+    Actions action = new Actions(driver);
+    action.moveToElement(apiMenu.firstElement()).perform();
+    waitFor{apiLink("current").isDisplayed() == true}
+    apiLink("current").click(GebApiPage)
 
-		then:
-		waitFor{ at GebApiPage }
-	}
+    then:
+    waitFor{ at GebApiPage }
+  }
 }

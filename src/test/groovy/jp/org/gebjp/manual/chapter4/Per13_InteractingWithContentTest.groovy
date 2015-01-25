@@ -24,79 +24,79 @@ import spock.lang.Shared
  */
 class Per13_InteractingWithContentTest extends GebReportingSpec {
 
-	@Shared GebDebugUtil debug = new GebDebugUtil()
+  @Shared GebDebugUtil debug = new GebDebugUtil()
 
-	/**
-	 * ■解説
-	 * WebDriver driverのActionクラスを使うことで複雑な動作も実行することができる
-	 *
-	 * ■HTML
-	 * -
-	 *
-	 * ■Geb
-	 * def actions = new Actions(driver)
-	 *
-	 * WebElement someItem = $('li.clicky').firstElement()
-	 * def shiftDoubleClickAction = actions.keyDown(Keys.SHIFT).doubleClick(someItem).keyUp(Keys.SHIFT).build()
-	 *
-	 * shiftDoubleClickAction.perform()
-	 */
-	def "4.13.2 Using Actions"() {
-		when:
-		to YahooTopPage
+  /**
+   * ■解説
+   * WebDriver driverのActionクラスを使うことで複雑な動作も実行することができる
+   *
+   * ■HTML
+   * -
+   *
+   * ■Geb
+   * def actions = new Actions(driver)
+   *
+   * WebElement someItem = $('li.clicky').firstElement()
+   * def shiftDoubleClickAction = actions.keyDown(Keys.SHIFT).doubleClick(someItem).keyUp(Keys.SHIFT).build()
+   *
+   * shiftDoubleClickAction.perform()
+   */
+  def "4.13.2 Using Actions"() {
+    when:
+    to YahooTopPage
 
-		then:
-		waitFor{ at YahooTopPage }
+    then:
+    waitFor{ at YahooTopPage }
 
-		when:
-		WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
-		def actions = new Actions(driver)
-		def newTabAction = actions.keyDown(Keys.CONTROL).click(regCstLink).keyUp(Keys.CONTROL).build()
-		newTabAction.perform()
-		newTabAction.perform()
-		regCstLink.click()
+    when:
+    WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
+    def actions = new Actions(driver)
+    def newTabAction = actions.keyDown(Keys.CONTROL).click(regCstLink).keyUp(Keys.CONTROL).build()
+    newTabAction.perform()
+    newTabAction.perform()
+    regCstLink.click()
 
-		then:
-		waitFor{ at YahooRegCstBasePage }
-	}
+    then:
+    waitFor{ at YahooRegCstBasePage }
+  }
 
-	/**
-	 * ■解説
-	 * Interact Closuresを使うと、Actionよりも簡単に実装できる
-	 *
-	 * ■HTML
-	 * -
-	 *
-	 * ■Geb
-	 * interact {
-	 *    keyDown(Keys.SHIFT)
-	 *    doubleClick($('li.clicky'))
-	 *    keyUp(Keys.SHIFT)
-	 * }
-	 * @return
-	 */
-	def "4.13.3 Using Interact Closures"() {
-		when:
-		to YahooTopPage
+  /**
+   * ■解説
+   * Interact Closuresを使うと、Actionよりも簡単に実装できる
+   *
+   * ■HTML
+   * -
+   *
+   * ■Geb
+   * interact {
+   *    keyDown(Keys.SHIFT)
+   *    doubleClick($('li.clicky'))
+   *    keyUp(Keys.SHIFT)
+   * }
+   * @return
+   */
+  def "4.13.3 Using Interact Closures"() {
+    when:
+    to YahooTopPage
 
-		then:
-		waitFor{ at YahooTopPage }
+    then:
+    waitFor{ at YahooTopPage }
 
-		when:
-		WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
-		interact {
-			keyDown(Keys.CONTROL)
-			click(regCstLink)
-			keyUp(Keys.CONTROL)
-		}
-		interact {
-			keyDown(Keys.CONTROL)
-			click(regCstLink)
-			keyUp(Keys.CONTROL)
-		}
-		regCstLink.click()
+    when:
+    WebElement regCstLink = $("a" , href:contains("rdsig.yahoo.co.jp") , text:"新規取得").firstElement()
+    interact {
+      keyDown(Keys.CONTROL)
+      click(regCstLink)
+      keyUp(Keys.CONTROL)
+    }
+    interact {
+      keyDown(Keys.CONTROL)
+      click(regCstLink)
+      keyUp(Keys.CONTROL)
+    }
+    regCstLink.click()
 
-		then:
-		waitFor{ at YahooRegCstBasePage }
-	}
+    then:
+    waitFor{ at YahooRegCstBasePage }
+  }
 }

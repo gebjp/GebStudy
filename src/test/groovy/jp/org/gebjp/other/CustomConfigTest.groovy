@@ -24,26 +24,26 @@ import geb.spock.GebSpec
  */
 class CustomConfigTest extends GebSpec {
 
-	def "google login test"() {
-		setup:
-		def googleLoginUrl = "https://accounts.google.com"
+  def "google login test"() {
+    setup:
+    def googleLoginUrl = "https://accounts.google.com"
 
-        //GebConfig.groovyの設定値を読み込む
-		def googleUserId = browser.config.rawConfig.googleUserId
-		def googlePassword = browser.config.rawConfig.googlePassword
+    //GebConfig.groovyの設定値を読み込む
+    def googleUserId = browser.config.rawConfig.googleUserId
+    def googlePassword = browser.config.rawConfig.googlePassword
 
-		when:
-		go googleLoginUrl
+    when:
+    go googleLoginUrl
 
-		then:
-		waitFor{ title == "ログイン - Google アカウント" }
+    then:
+    waitFor{ title == "ログイン - Google アカウント" }
 
-		when:
-		$("form").Email = googleUserId
-		$("form").Passwd = googlePassword
-		$("input" , name:"signIn").click()
+    when:
+    $("form").Email = googleUserId
+    $("form").Passwd = googlePassword
+    $("input" , name:"signIn").click()
 
-		then:
-		waitFor{ title == "アカウント設定"}
-	}
+    then:
+    waitFor{ title == "アカウント設定"}
+  }
 }
