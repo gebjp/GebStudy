@@ -16,7 +16,7 @@
 #ソース構成
 * このGeb学習用ソースは、Geb公式サイトのマニュアルを補足するものになっています。是非、下記、URL公式マニュアルと一緒にお使いください
  * http://www.gebish.org/manual/current/
-* マニュアル目次の章ごとにテストケースファイルが作成されています
+* マニュアル目次の章ごとにディレクトリが作成されています
 * 例えば、"4.Interacting with content"	は、"GebStudy/src/test/groovy/jp/org/gebjp/manual/chapter4"にテストコードがあります
 
 1. （未）Introduction
