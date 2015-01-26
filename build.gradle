@@ -1,0 +1,54 @@
+plugins {
+    id 'groovy'
+    id 'idea'
+    id 'eclipse'
+}
+repositories {
+    jcenter()
+}
+
+group = 'org.gebjp.study'
+project.ext {
+    artifactId = 'geb-study'
+    jdkVersion = JavaVersion.VERSION_1_7
+    groovyVersion = '2.3.7'
+    seleniumVersion = '2.44.0'
+}
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = targetCompatibility = jdkVersion
+
+tasks.withType(AbstractCompile) each { it.options.encoding = 'UTF-8' }
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.7'
+    compile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    compile 'org.gebish:geb-spock:0.10.0'
+    compile 'com.athaydes:spock-reports:1.2.3'
+    compile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+    compile "org.seleniumhq.selenium:selenium-support:${seleniumVersion}"
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
+    compile "org.seleniumhq.selenium:selenium-ie-driver:${seleniumVersion}"
+}
+wrapper {
+    gradleVersion = 2.2
+}
+
+eclipse {
+    jdt {
+        sourceCompatibility = jdkVersion
+        targetCompatibility = jdkVersion
+    }
+    classpath {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+idea {
+    project {
+        jdkName = jdkVersion
+        languageLevel = jdkVersion
+        vcs = "Git"
+    }
+}
