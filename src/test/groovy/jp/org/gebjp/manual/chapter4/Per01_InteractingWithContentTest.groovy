@@ -80,10 +80,10 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
     and:
     //debug.printContents($("a"))
-    $("a").size() == 45
+    $("a").size() == 46
 
     //debug.printContents($("a", href: contains("www.gebish.org")))
-    $("a", href: contains("www.gebish.org")).size() == 31
+    $("a", href: contains("www.gebish.org")).size() == 32
 
     //debug.printContents($("a", href: contains("www.gebish.org") ,text:""))
     $("a", href: contains("www.gebish.org") ,text:"").size() == 22
@@ -120,25 +120,25 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
     and:
     //debug.printContents($("a"))
-    $("a").size() == 45
+    $("a").size() == 46
 
     //debug.printContents($("a", href: startsWith("http://www.gebish.org")))
-    $("a", href: startsWith("http://www.gebish.org")).size() == 31
+    $("a", href: startsWith("http://www.gebish.org")).size() == 32
     $("a", href: notStartsWith("http://www.gebish.org")).size() == 14
 
     //debug.printContents($("a", href: contains("manual")))
     $("a", href: contains("manual")).size() == 24
-    $("a", href: notContains("manual")).size() == 21
+    $("a", href: notContains("manual")).size() == 22
 
     //debug.printContents($("a", href: endsWith("/api/")))
     $("a", href: endsWith("/api/")).size() == 11
-    $("a", href: notEndsWith("/api/")).size() == 34
+    $("a", href: notEndsWith("/api/")).size() == 35
 
     //debug.printContents($("a", text: containsWord("Page")))
     //debug.printContents($("a", text: notContainsWord("Page")))
     //"PageObjects"はcontainsWordでは合致しない。
     $("a", text: containsWord("Page")).size() == 2
-    $("a", text: notContainsWord("Page")).size() == 43
+    $("a", text: notContainsWord("Page")).size() == 44
 
   }
 
