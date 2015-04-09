@@ -54,9 +54,9 @@ class Per11_InteractingWithContentTest extends GebReportingSpec {
     $("input" , name:"deliver").value(false)
     $("input" , name:"cword").value("1111111")
     $("input" , name:"has_tcard").value("chk_no_tcard")
-    $("button" , name:"commit").click()
+    $(name:"commit").click()
 
     then:
-    waitFor{$("ul").$("li").text().startsWith("正しく入力してください")}
+    waitFor{$("#errMsg").text().startsWith("正しく入力してください")}
   }
 }
