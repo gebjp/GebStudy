@@ -39,6 +39,7 @@ class Per09_InteractingWithContentTest extends GebReportingSpec {
     waitFor{ at GebTopPage }
 
     and:
+    //debug.printContents($("span" , class:"orange"))
     $("span" , class:"orange").css("font-style") == "italic"
   }
 }

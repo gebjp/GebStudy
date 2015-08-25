@@ -45,6 +45,7 @@ class Per08_InteractingWithContentTest extends GebReportingSpec {
     //debug.printContents($("div"))
 
     and:
+    //debug.printContents($("div").filter(".index0"))
     $("div").filter(".index0").classes() == ["alt2", "index0" , "line", "number1"]
 
   }

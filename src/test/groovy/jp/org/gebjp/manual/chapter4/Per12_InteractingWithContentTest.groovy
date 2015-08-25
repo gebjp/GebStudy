@@ -60,7 +60,6 @@ class Per12_InteractingWithContentTest extends GebReportingSpec {
     $("form").mail << Keys.BACK_SPACE
     $("form").yid = "testtesttest"
     $("form").pw1 = "testtesttest"
-    $("form").pw2 = "testtesttest"
     $("form").post_code = "1120012"
     $("form").birthday = "19800501"
     $("form").cword = "1111111"
@@ -72,10 +71,10 @@ class Per12_InteractingWithContentTest extends GebReportingSpec {
     $("form").gender = "男性"
     $("form").has_tcard = "chk_no_tcard"
 
-    $("button" , name:"commit").click()
+	$(name:"commit").click()
 
     then:
-    waitFor{$("ul").$("li").text().startsWith("正しく入力してください")}
+    waitFor{$("div", class:"errMsg").$("p").text().startsWith("正しく入力してください")}
   }
 
 }

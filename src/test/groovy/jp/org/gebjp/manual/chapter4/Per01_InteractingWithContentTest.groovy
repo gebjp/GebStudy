@@ -49,6 +49,8 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
     //debug.printContents($("p", 2))
     $("p", 2).text().startsWith("It can be used for scripting,")
+
+	//debug.printContents($("p", 0..1))
     $("p", 0..1)*.text() == [
       "Geb is a browser automation solution.",
       "It brings together the power of WebDriver, the elegance of jQuery content selection, the robustness of Page Object modelling and the expressiveness of the Groovy language."
@@ -80,13 +82,13 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
     and:
     //debug.printContents($("a"))
-    $("a").size() == 46
+    $("a").size() == 42
 
     //debug.printContents($("a", href: contains("www.gebish.org")))
-    $("a", href: contains("www.gebish.org")).size() == 32
+    $("a", href: contains("www.gebish.org")).size() == 28
 
     //debug.printContents($("a", href: contains("www.gebish.org") ,text:""))
-    $("a", href: contains("www.gebish.org") ,text:"").size() == 22
+    $("a", href: contains("www.gebish.org") ,text:"").size() == 18
   }
 
   /**
@@ -120,25 +122,25 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
 
     and:
     //debug.printContents($("a"))
-    $("a").size() == 46
+    $("a").size() == 42
 
     //debug.printContents($("a", href: startsWith("http://www.gebish.org")))
-    $("a", href: startsWith("http://www.gebish.org")).size() == 32
+    $("a", href: startsWith("http://www.gebish.org")).size() == 28
     $("a", href: notStartsWith("http://www.gebish.org")).size() == 14
 
     //debug.printContents($("a", href: contains("manual")))
-    $("a", href: contains("manual")).size() == 24
+    $("a", href: contains("manual")).size() == 20
     $("a", href: notContains("manual")).size() == 22
 
     //debug.printContents($("a", href: endsWith("/api/")))
-    $("a", href: endsWith("/api/")).size() == 11
-    $("a", href: notEndsWith("/api/")).size() == 35
+    $("a", href: endsWith("/api/")).size() == 9
+    $("a", href: notEndsWith("/api/")).size() == 33
 
     //debug.printContents($("a", text: containsWord("Page")))
     //debug.printContents($("a", text: notContainsWord("Page")))
     //"PageObjects"はcontainsWordでは合致しない。
     $("a", text: containsWord("Page")).size() == 2
-    $("a", text: notContainsWord("Page")).size() == 44
+    $("a", text: notContainsWord("Page")).size() == 40
 
   }
 
@@ -163,10 +165,12 @@ class Per01_InteractingWithContentTest extends GebReportingSpec {
     waitFor{ at GebTopPage }
 
     and:
+	//debug.printContents($("a" ,href:contains("manual")))
+
     //debug.printContents($("a" ,href:contains("manual")).max { it.@href })
     $("a" ,href:contains("manual")).max { it.@href }.@href.contains("snapshot")
 
     //debug.printContents($("a" ,href:contains("manual")).min { it.@href })
-    $("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.6.2")
+    $("a" ,href:contains("manual")).min { it.@href }.@href.contains("0.10.0")
   }
 }
