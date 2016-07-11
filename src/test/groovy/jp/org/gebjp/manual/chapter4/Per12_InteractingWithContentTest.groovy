@@ -71,7 +71,7 @@ class Per12_InteractingWithContentTest extends GebReportingSpec {
     $("form").gender = "男性"
     $("form").has_tcard = "chk_no_tcard"
 
-	$(name:"commit").click()
+	$("input" , name:"commit").click()
 
     then:
     waitFor{$("div", class:"errMsg").$("p").text().startsWith("正しく入力してください")}
